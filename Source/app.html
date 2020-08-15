@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="output.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="body_wrapper" class="container-fluid">
+        <div class="row">
+            <section id="file_tab" class="col-4 note-name-container">
+                <div class="add-note-container">
+                    <label>Add Note</label>
+                    <img id="add_note_btn"
+                        src="data:image/svg+xml;base64,
+                PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyIDUxMjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiBjbGFzcz0iIj48Zz48Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yNTYsMEMxMTQuODQ0LDAsMCwxMTQuODQ0LDAsMjU2czExNC44NDQsMjU2LDI1NiwyNTZzMjU2LTExNC44NDQsMjU2LTI1NlMzOTcuMTU2LDAsMjU2LDB6IE00MDUuMzMzLDI2Ni42NjcgICAgYzAsNS44OTYtNC43NzEsMTAuNjY3LTEwLjY2NywxMC42NjdIMjc3LjMzM3YxMTcuMzMzYzAsNS44OTYtNC43NzEsMTAuNjY3LTEwLjY2NywxMC42NjdoLTIxLjMzMyAgICBjLTUuODk2LDAtMTAuNjY3LTQuNzcxLTEwLjY2Ny0xMC42NjdWMjc3LjMzM0gxMTcuMzMzYy01Ljg5NiwwLTEwLjY2Ny00Ljc3MS0xMC42NjctMTAuNjY3di0yMS4zMzMgICAgYzAtNS44OTYsNC43NzEtMTAuNjY3LDEwLjY2Ny0xMC42NjdoMTE3LjMzM1YxMTcuMzMzYzAtNS44OTYsNC43NzEtMTAuNjY3LDEwLjY2Ny0xMC42NjdoMjEuMzMzICAgIGM1Ljg5NiwwLDEwLjY2Nyw0Ljc3MSwxMC42NjcsMTAuNjY3djExNy4zMzNoMTE3LjMzM2M1Ljg5NiwwLDEwLjY2Nyw0Ljc3MSwxMC42NjcsMTAuNjY3VjI2Ni42Njd6IiBkYXRhLW9yaWdpbmFsPSIjMDAwMDAwIiBjbGFzcz0iYWN0aXZlLXBhdGgiIHN0eWxlPSJmaWxsOiMzNTM1MzUiIGRhdGEtb2xkX2NvbG9yPSIjMDAwMDAwIj48L3BhdGg+Cgk8L2c+CjwvZz48L2c+IDwvc3ZnPg==" />
+                    <input id="new_title_field">
+                </div>
+                <div class="notes-container">
+                    <!-- <div class="note-wrapper note-card">
+                        <label id="note_card_title">Lorem, ipsum.</label>
+                        <p id="note_cardPreview_text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint
+                            modi sequi itaque?...</p>
+                    </div> -->
+
+                </div>
+            </section>
+            <section id="text_tab" class="col-8">
+                <div class="text-title">
+                    <h2 contenteditable="true" id="note-working-title">Add New-Note</h2>
+                    <button id="save_button">SAVE</button>
+                </div>
+                <div class="text-body">
+                    <textarea name="note-text" id="text" cols="30" rows="10"></textarea>
+                </div>
+
+            </section>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="script.js" rel="script"></script>
+</body>
+
+</html>

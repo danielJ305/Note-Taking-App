@@ -1,0 +1,12 @@
+@import 'mixins';
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@include fileTab;
+
+@include textTab;

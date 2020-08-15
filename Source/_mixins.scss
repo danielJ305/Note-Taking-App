@@ -1,0 +1,136 @@
+@import 'variables';
+
+@mixin borderTransition($ClassSelector) {
+
+    #{$ClassSelector}::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+        border: 2px solid rgba(108, 115, 61, 0);
+        transition: top, left, right, bottom, ease-in-out;
+        transition-duration: 150ms;
+    }
+
+    $border-card: 2px * -2;
+    @debug $border-card;
+
+    #{$ClassSelector}:hover::before,
+    #{$ClassSelector}:focus::before {
+        border-color: $note-card-bordercolor;
+        top: $border-card;
+        left: $border-card;
+        right: $border-card;
+        bottom: $border-card;
+    }
+}
+
+@mixin fileTab {
+
+    #file_tab {
+        overflow: auto;
+        padding: 35px 45px 35px 45px;
+        background-color: $notes-fldr-main;
+        height: 100vh;
+
+        & label {
+            display: block;
+            color: $main-base-text;
+        }
+
+        & p {
+            color: $main-base-text;
+        }
+    }
+
+    .add-note-container {
+        padding: 0px 20px;
+        position: relative;
+    }
+
+    img#add_note_btn {
+        width: 21px;
+        height: auto;
+        position: absolute;
+        right: 30px;
+        top: 39px;
+    }
+
+    img#add_note_btn:active {
+        width: 18px;
+    }
+
+
+    input#new_title_field {
+        height: 36px;
+        width: 250px;
+        border: none;
+        background-color: $main-base-text;
+        padding: 0 0 0 10px;
+    }
+
+    .notes-container {
+        background-color: $notes-fldr-base;
+        margin: 20px 0px;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .note-wrapper {
+        background-color: $notes-fldr-text-base;
+        padding: 10px;
+        margin: 10px 0;
+        position: relative;
+        cursor: pointer;
+    }
+
+    @include borderTransition('.note-wrapper');
+
+}
+
+@mixin textTab {
+    #text_tab {
+        padding: 35px 55px 35px 55px;
+        background-color: $main-base-text;
+        border: 1vw solid $notes-fldr-base;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+    .text-title {
+        border-bottom: 2px solid $notes-fldr-text-base;
+
+        & h2 {
+            display: inline-block;
+        }
+
+        & #save_button {
+            float: right;
+            background-color: $notes-fldr-main;
+            color: $main-base-text;
+            border: none;
+            padding: 2px 12px;
+            font-size: 18px;
+            margin-top: 5px;
+            position: relative;
+        }
+
+        @include borderTransition('#save_button');
+    }
+
+    .text-body {
+        height: 95%;
+        margin-top: 15px;
+        overflow-y: scroll;
+
+        & textarea {
+            width: 100%;
+            min-height: 100vh;
+            border: none;
+            background-color: $main-base-text;
+        }
+    }
+}

@@ -80,6 +80,10 @@ var UIController = (function () {
         noteCardAnchor: '#note-card-anchor'
     };
 
+    function textAreaFocus () {
+        $(DOMStrings.workingTabText).focus();
+    }
+
     return {
         getNewInput: function () {
             return {
@@ -116,6 +120,7 @@ var UIController = (function () {
             }
 
             document.querySelector(element).insertAdjacentHTML("afterbegin", newHTML);
+            textAreaFocus()
         },
 
         updateNoteCard: function (obj) {
@@ -148,7 +153,7 @@ var UIController = (function () {
             }
 
             cardContainer.children('label').html(Title);
-
+            textAreaFocus()
         },
 
         addWorkingNote: function (obj) {
@@ -170,7 +175,7 @@ var UIController = (function () {
 
             document.querySelector(element).innerHTML = '';
             document.querySelector(element).insertAdjacentHTML("afterbegin", newHTML);
-
+            textAreaFocus()
         },
 
         returnData: function() {
@@ -227,7 +232,6 @@ var Controller = (function (UICtrl, NoteCtrl) {
         UICtrl.addWorkingNote(newNote);
         // 4 - Add a note card to the note container
         UICtrl.addNoteCard(newNote);
-
         UICtrl.clearFields();
     };
 
@@ -239,6 +243,7 @@ var Controller = (function (UICtrl, NoteCtrl) {
         updateData = NoteCtrl.dataUpdator(workingInput);
         // 3 - Update the note card in the note Container
         UICtrl.updateNoteCard(updateData);
+
     };
 
     var ctrlClickCard = function (e) {

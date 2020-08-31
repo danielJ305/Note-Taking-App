@@ -8,7 +8,8 @@
 #file_tab {
   overflow: auto;
   padding: 35px 45px 35px 45px;
-  background-image: url(Media\DarkBKGTexture.jpg);
+  background-image: url(Media/DarkBKGTexture.jpg);
+  background-size: cover;
   height: 100vh;
 }
 
@@ -44,6 +45,7 @@ input#new_title_field {
   border: none;
   background-color: #F2F2F2;
   padding: 0 0 0 10px;
+  outline: none;
 }
 
 .notes-container {
@@ -69,6 +71,26 @@ input#new_title_field {
   right: 0;
   bottom: 0;
   z-index: 0;
+  -webkit-transition: right, ease-in-out;
+  transition: right, ease-in-out;
+  -webkit-transition-duration: 150ms;
+          transition-duration: 150ms;
+}
+
+.note-wrapper:hover::before,
+.note-wrapper:focus::before {
+  background-image: url();
+  right: 4px;
+}
+
+.note-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
   border: 2px solid rgba(108, 115, 61, 0);
   -webkit-transition: top, left, right, bottom, ease-in-out;
   transition: top, left, right, bottom, ease-in-out;
@@ -78,8 +100,8 @@ input#new_title_field {
 
 .note-wrapper:hover::before,
 .note-wrapper:focus::before {
-  -webkit-box-shadow: 0 0 5px 1px rgba(82, 141, 242, 0.7);
-          box-shadow: 0 0 5px 1px rgba(82, 141, 242, 0.7);
+  -webkit-box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
+          box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
   top: -4px;
   left: -4px;
   right: -4px;
@@ -100,6 +122,7 @@ input#new_title_field {
 
 .text-title h2 {
   display: inline-block;
+  outline: none;
 }
 
 .text-title #save_button {
@@ -130,8 +153,8 @@ input#new_title_field {
 
 .text-title #save_button:hover::before,
 .text-title #save_button:focus::before {
-  -webkit-box-shadow: 0 0 5px 1px rgba(82, 141, 242, 0.7);
-          box-shadow: 0 0 5px 1px rgba(82, 141, 242, 0.7);
+  -webkit-box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
+          box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
   top: -4px;
   left: -4px;
   right: -4px;
@@ -149,5 +172,6 @@ input#new_title_field {
   min-height: 100vh;
   border: none;
   background-color: #F2F2F2;
+  outline: none;
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,3 +1,4 @@
+
 /* DOM */
 var NoteController = (function () {
 
@@ -13,8 +14,7 @@ var NoteController = (function () {
 
     return {
         newNote: function (title) {
-            var newNote, ID, Title;
-            Title = title.title;
+            var newNote, ID;
 
             if (data.notes.length > 0) {
                 ID = data.notes[data.notes.length - 1].id + 1;
@@ -22,7 +22,7 @@ var NoteController = (function () {
                 ID = 0;
             }
 
-            newNote = new Note(ID, Title, '');
+            newNote = new Note(ID, title.title, '');
 
             data.notes.push(newNote);
             return newNote;
@@ -73,7 +73,6 @@ var UIController = (function () {
         saveButton: '#save_button',
         noteCard: '.note-card',
         workingNote: '#text_tab',
-        noteCardContainer: '.notes-container',
         workingTabID_DIV: '.text-title',
         workingTabTitle: '#note-working-title',
         workingTabText: '#text',
@@ -99,7 +98,7 @@ var UIController = (function () {
         addNoteCard: function (obj) {
             var html, newHTML, element, cardPlaceholder;
 
-            element = DOMStrings.noteCardContainer;
+            element = DOMStrings.noteContainer;
 
             html = `<div class="note-wrapper note-card" id="note-%id%">
                         <label id="note_card_title">%title%</label>
@@ -174,6 +173,10 @@ var UIController = (function () {
 
         },
 
+        returnData: function() {
+            return data;
+        },
+
         clearFields: function () {
             var fields, fieldsArr;
             fields = document.querySelectorAll(DOMStrings.newTitle);
@@ -199,35 +202,19 @@ var Controller = (function (UICtrl, NoteCtrl) {
     var eventlisteners = function () {
         var DOM = UICtrl.getDOMStrings();
 
-        $(DOM.bodyWrapper).on('click', eventHandler);
-
-        function eventHandler(e) {
-            if (e.target !== e.target.id) {
-
-                var clickedItemID = e.target.id;
-                var regex = /note./gi;
-
-                if ('#' + clickedItemID === DOM.addNote) {
-                    ctrlAddNewNote();
-                } else if ('#' + clickedItemID === DOM.saveButton) {
-                    ctrlSaveNote();
-                } else if (clickedItemID.match(regex)) {
-                    ctrlClickCard();
-                }
+        document.addEventListener('keypress', function (event) {
+            if (event.keyCode === 13 || event.which === 13) {
+                ctrlAddNewNote();
+            } else {
+                return;
             }
 
-            e.stopPropagation();
-        }
+        });
 
+        $(document).on('click', DOM.addNote, ctrlAddNewNote);
+        $(document).on('click', DOM.saveButton, ctrlSaveNote);
+        $(document).on('click', DOM.noteContainer, ctrlClickCard);
 
-
-        // document.addEventListener('keypress', function (event) {
-        //     if (event.keyCode === 13 || event.which === 13) {
-        //         ctrlAddNewNote();
-        //     } else {
-        //         return;
-        //     }
-        // });
     };
 
     var ctrlAddNewNote = function () {
@@ -245,7 +232,7 @@ var Controller = (function (UICtrl, NoteCtrl) {
     };
 
     var ctrlSaveNote = function () {
-        var workingInput, currentNote;
+        var workingInput;
         // 1 - Get the input from the working tab
         workingInput = UICtrl.getWorkingTabNote();
         // 2 - Update the data structure
@@ -255,13 +242,68 @@ var Controller = (function (UICtrl, NoteCtrl) {
     };
 
     var ctrlClickCard = function (e) {
-        var element, workingNoteData;
-        // Listen for click on card
-        element = e;
-        // Retrieve required Data from NoteCtrl
-        workingNoteData = NoteCtrl(element);
-        // Add note to the working tab
-    }
+        var data, workingTab, obj;
+        workingTab = UICtrl.getWorkingTabNote();
+        data = NoteCtrl.returnData();
+
+        // 1 - Ask if you would like to save the note
+        function matcher() {
+            var itemID, splitID, ID;
+            var i = 0;
+
+            while (i < data.notes.length) {
+                itemID = workingTab.id;
+                splitID = itemID.split('-');
+                ID = parseFloat(splitID[1]);
+
+                if (ID === data.notes[i].id) {
+                    if (data.notes[i].title === workingTab.title && data.notes[i].text === workingTab.text) {
+                        workingNote();
+                    } else {
+                        $( "#dialog-confirm" ).dialog({
+                            resizable: false,
+                            height: "auto",
+                            width: 400,
+                            modal: true,
+                            buttons: {
+                            "Save Note": function() {
+                                $( this ).dialog( "close" );
+                            
+                                ctrlSaveNote();
+                                workingNote();
+                            },
+                            "No": function() {
+                                $( this ).dialog( "close" );
+
+                                workingNote();
+                            }
+                            }
+                        });
+                    };
+                }
+                i++;
+            }
+        }
+
+        function workingNote() {
+            var itemID, splitID, ID;
+            var i = 0;
+
+            while (i < data.notes.length) {
+                itemID = e.target.id;
+                splitID = itemID.split('-');
+                ID = parseFloat(splitID[1]);
+
+                if (ID === data.notes[i].id) {
+                    obj = data.notes[i];
+                    UICtrl.addWorkingNote(obj)
+                }
+                i++;
+            }
+        }
+
+        matcher();        
+    };
 
     return {
         init: function () {
@@ -269,7 +311,7 @@ var Controller = (function (UICtrl, NoteCtrl) {
             eventlisteners();
         }
     };
-
+    
 })(UIController, NoteController);
 
 
@@ -286,17 +328,12 @@ var inputSize = (function (UICtrl) {
     function updateInput() {
         var textWrapperWidth = $(DOM.noteContainer).width();
 
-        // console.log(textWrapperWidth)
         $(DOM.newTitle).width(textWrapperWidth);
     }
 
     window.onresize = updateInput;
     window.onload = updateInput;
-    // return {
-    //     init: function () {
-
-    //     }
-    // };
+    
 
 })(UIController);
 

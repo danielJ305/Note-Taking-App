@@ -63,24 +63,27 @@ input#new_title_field {
   cursor: pointer;
 }
 
-.note-wrapper::before {
-  content: '';
+img.delete-button {
   position: absolute;
-  top: 0;
-  left: 0;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  width: 20px;
+  height: auto;
   right: 0;
   bottom: 0;
-  z-index: 0;
-  -webkit-transition: right, ease-in-out;
-  transition: right, ease-in-out;
-  -webkit-transition-duration: 150ms;
-          transition-duration: 150ms;
+  top: 0;
+  display: none;
+  opacity: 0;
+  transition: opacity .3s ease-in;
+  -moz-transition: opacity .3s ease-in;
+  -webkit-transition: opacity .3s ease-in;
 }
 
-.note-wrapper:hover::before,
-.note-wrapper:focus::before {
-  background-image: url();
-  right: 4px;
+.note-wrapper:hover img.delete-button {
+  display: block;
+  top: 2.1rem;
+  right: 1rem;
+  opacity: 1;
 }
 
 .note-wrapper::before {
@@ -100,6 +103,7 @@ input#new_title_field {
 
 .note-wrapper:hover::before,
 .note-wrapper:focus::before {
+  background-repeat: no-repeat;
   -webkit-box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
           box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
   top: -4px;
@@ -153,6 +157,7 @@ input#new_title_field {
 
 .text-title #save_button:hover::before,
 .text-title #save_button:focus::before {
+  background-repeat: no-repeat;
   -webkit-box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
           box-shadow: 0 0 3px 1px rgba(82, 141, 242, 0.5);
   top: -4px;

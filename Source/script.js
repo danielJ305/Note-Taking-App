@@ -107,6 +107,7 @@ var UIController = (function () {
             html = `<div class="note-wrapper note-card" id="note-%id%">
                         <label id="note_card_title">%title%</label>
                         <p id="note_cardPreview_text">%text%</p>
+                        <img class="delete-button" src="Media\close (1).png" alt="delete">
                     </div>`;
 
             newHTML = html.replace('%id%', obj.id);
@@ -120,7 +121,7 @@ var UIController = (function () {
             }
 
             document.querySelector(element).insertAdjacentHTML("afterbegin", newHTML);
-            textAreaFocus()
+            textAreaFocus();
         },
 
         updateNoteCard: function (obj) {
@@ -175,7 +176,7 @@ var UIController = (function () {
 
             document.querySelector(element).innerHTML = '';
             document.querySelector(element).insertAdjacentHTML("afterbegin", newHTML);
-            textAreaFocus()
+            textAreaFocus();
         },
 
         returnData: function() {
@@ -219,6 +220,7 @@ var Controller = (function (UICtrl, NoteCtrl) {
         $(document).on('click', DOM.addNote, ctrlAddNewNote);
         $(document).on('click', DOM.saveButton, ctrlSaveNote);
         $(document).on('click', DOM.noteContainer, ctrlClickCard);
+        $(document).on('click', )
 
     };
 
@@ -301,13 +303,17 @@ var Controller = (function (UICtrl, NoteCtrl) {
 
                 if (ID === data.notes[i].id) {
                     obj = data.notes[i];
-                    UICtrl.addWorkingNote(obj)
+                    UICtrl.addWorkingNote(obj);
                 }
                 i++;
             }
         }
 
         matcher();        
+    };
+
+    var deleteNote = function(e) {
+
     };
 
     return {

@@ -25,20 +25,24 @@
                 <div class="notes-container">
                     
                     <!-- <div class="note-wrapper note-card">
-                        <label id="note_card_title">Lorem, ipsum.</label>
+                        <label id="note_card_title">Note-0</label>
                         <p id="note_cardPreview_text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint
                             modi sequi itaque?...</p>
                     </div> -->
-
+                    <div class="note-wrapper note-card" id="note-0">
+                        <label id="note_card_title">First Note</label>
+                        <p id="note_cardPreview_text">Click this card to edit your note.<br></p>
+                        <img class="delete-button" id="dlt_btn" src="Media/closeB.png" alt="delete">
+                    </div>
                 </div>
             </section>
             <section id="text_tab" class="col-8">
                 <div class="text-title">
-                    <h2 contenteditable="true" id="note-working-title">Add New-Note</h2>
+                    <h2 contenteditable="true" id="note-working-title">Add New Note</h2>
                     <button id="save_button">SAVE</button>
                 </div>
                 <div class="text-body">
-                    <textarea name="note-text" id="text" cols="30" rows="10"></textarea>
+                    <textarea name="note-text" id="text" cols="30" rows="10">Edit your note here...</textarea>
                 </div>
             </section>
             <div id="dialog-confirm" title="You haven't saved your Note!" style="display:none">

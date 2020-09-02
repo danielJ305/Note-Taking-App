@@ -9,7 +9,7 @@ var NoteController = (function () {
     };
 
     var data = {
-        notes: []
+        notes: [{id: 0, title: "First Note", text: "Click this card to edit your note."}]
     };
 
     return {

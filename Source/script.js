@@ -50,8 +50,17 @@ var NoteController = (function () {
             return currentNote;
         },
 
-        cardClick: function (e) {
-            console.log(e);
+        deleteNote: function(id) {
+            var ids, index, ID;
+            ID = parseFloat(id);
+
+            ids = data.notes.map(cur => cur.id);
+
+            index = ids.indexOf(ID);
+            console.log(ids, index);
+            if (index != -1) {
+                data.notes.splice(index, 1);
+            }
         },
 
         returnData: function () {
@@ -77,7 +86,8 @@ var UIController = (function () {
         workingTabTitle: '#note-working-title',
         workingTabText: '#text',
         noteWrapper: '.note-wrapper',
-        noteCardAnchor: '#note-card-anchor'
+        noteCardAnchor: '#note-card-anchor',
+        deleteButton: '.delete-button'
     };
 
     function textAreaFocus () {
@@ -107,7 +117,7 @@ var UIController = (function () {
             html = `<div class="note-wrapper note-card" id="note-%id%">
                         <label id="note_card_title">%title%</label>
                         <p id="note_cardPreview_text">%text%</p>
-                        <img class="delete-button" src="Media\close (1).png" alt="delete">
+                        <img class="delete-button" id="dlt_btn" src="Media/closeB.png" alt="delete">
                     </div>`;
 
             newHTML = html.replace('%id%', obj.id);
@@ -179,6 +189,11 @@ var UIController = (function () {
             textAreaFocus();
         },
 
+        deleteNoteUI: function(selectorID) {
+            var el = document.getElementById(selectorID);
+            el.parentNode.removeChild(el);
+        },
+
         returnData: function() {
             return data;
         },
@@ -220,7 +235,7 @@ var Controller = (function (UICtrl, NoteCtrl) {
         $(document).on('click', DOM.addNote, ctrlAddNewNote);
         $(document).on('click', DOM.saveButton, ctrlSaveNote);
         $(document).on('click', DOM.noteContainer, ctrlClickCard);
-        $(document).on('click', )
+        $(document).on('click', DOM.deleteButton, ctrldeleteNote);
 
     };
 
@@ -312,8 +327,20 @@ var Controller = (function (UICtrl, NoteCtrl) {
         matcher();        
     };
 
-    var deleteNote = function(e) {
+    var ctrldeleteNote = function(e) {
+        var itemID, splitID, ID;
+        console.log(e.target.parentElement)
+        itemID = e.target.parentElement.id;
 
+        if (itemID) {
+            splitID = itemID.split('-');
+            ID = (splitID[1]);
+
+            NoteCtrl.deleteNote(ID);
+
+            UICtrl.deleteNoteUI(itemID)
+        }
+        
     };
 
     return {

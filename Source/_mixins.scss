@@ -35,7 +35,6 @@
     #file_tab {
         overflow: auto;
         padding: 35px 45px 35px 45px;
-        // background-color: $notes-fldr-main;
         background-image: url(Media/DarkBKGTexture.jpg);
         background-size: cover;
         height: 100vh;
@@ -93,6 +92,15 @@
         cursor: pointer;
     }
 
+    .note-wrapper:hover {
+        img.delete-button {
+            display: block;
+            top: 2.1rem;
+            right: 1rem;
+            opacity:1;
+        }
+        
+    }
 
     img.delete-button {
         // content: '';
@@ -110,16 +118,6 @@
         transition: opacity .3s ease-in;
         -moz-transition: opacity .3s ease-in;
         -webkit-transition: opacity .3s ease-in;
-    }
-
-    .note-wrapper:hover {
-        img.delete-button {
-            display: block;
-            top: 2.1rem;
-            right: 1rem;
-            opacity:1;
-        }
-        
     }
 
     @include borderTransition('.note-wrapper');
